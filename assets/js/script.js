@@ -1,6 +1,6 @@
 var quotes = [];
+var ronQuotes = [];
 var time = 60;
-
 
 
 var getQuotes = function() {
@@ -9,8 +9,12 @@ var getQuotes = function() {
         if(response.ok) {
             response.json().then(function(data) {
                 // pass response
-                displayQuote(data);
                 console.log(data);
+                quotes.push(data);
+                console.log(quotes);
+                console.log(data.quote)
+                console.log(data.role);
+                console.log(data.show);
             })
         }
     })
@@ -19,9 +23,13 @@ var getQuotes = function() {
 var ronSwanson = function() {
     var apiUrl = "https://ron-swanson-quotes.herokuapp.com/v2/quotes"
     fetch(apiUrl).then(function(response) {
-        response.json().then(function(data) {
-            console.log(data);
+        if(response.ok) {
+            response.json().then(function(data) {
+                console.log(data);
+                ronQuotes.push(data);
+                console.log(ronQuotes);
         })
+     }
     })
 }
 
@@ -32,8 +40,9 @@ displayQuote = function () {
 
 // timer function
 setInterval(function () {
-    time --
-}1000;)
+    time --;
+    console.log(time);
+}(1000))
 
 
 
