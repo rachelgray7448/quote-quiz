@@ -1,4 +1,3 @@
-var incomingArray = [];
 var myQuotes = [];
 var ronQuotes = [];
 /****** Make sure to have an ID of btn in HTML.. ********/
