@@ -28,6 +28,7 @@ var ronSwanson = function () {
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        ronQuotes.push(data);
       })
     }
   })
@@ -35,9 +36,23 @@ var ronSwanson = function () {
 
 
 displayQuote = function () {
-  console.log(myQuotes[0].quote);
-  containerEl.innerHTML = "<p>" + myQuotes[0].quote + "</p>"
+  //console.log(ronQuotes[0]);
+  var fiftyfifty = getRandomInt(2);
+  if (fiftyfifty == 0) {
+    containerEl.innerHTML = "<p>" + myQuotes[0].quote + "</p>"
+  }
+  else {
+    containerEl.innerHTML = "<p>" + ronQuotes[0] + "</p>"
+  }
+
+
 };
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
 
 getQuotes();
 ronSwanson();
