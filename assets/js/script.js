@@ -1,50 +1,44 @@
-var quotes = [];
+var incomingArray = [];
+var myQuotes = [];
 var ronQuotes = [];
-var time = 60;
+/****** Make sure to have an ID of btn in HTML.. ********/
+/****** Make sure to have an ID of btn in HTML.. ********/
+/****** Make sure to have an ID of btn in HTML.. ********/
+/****** Make sure to have an ID of btn in HTML.. ********/
+/****** Make sure to have an ID of btn in HTML.. ********/
+var myBtn = document.querySelector("#btn");
+var containerEl = document.querySelector("#container");
 
 
-var getQuotes = function() {
-    var apiUrl = "https://movie-quote-api.herokuapp.com/v1/quote/"
-    fetch(apiUrl).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
-                // pass response
-                console.log(data);
-                quotes.push(data);
-                console.log(quotes);
-                console.log(data.quote)
-                console.log(data.role);
-                console.log(data.show);
-            })
-        }
-    })
+var getQuotes = function () {
+  var apiUrl = "https://movie-quote-api.herokuapp.com/v1/quote/"
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        myQuotes.push(data);
+
+      })
+    }
+  })
+
 }
 
-var ronSwanson = function() {
-    var apiUrl = "https://ron-swanson-quotes.herokuapp.com/v2/quotes"
-    fetch(apiUrl).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
-                console.log(data);
-                ronQuotes.push(data);
-                console.log(ronQuotes);
-        })
-     }
-    })
+var ronSwanson = function () {
+  var apiUrl = "https://ron-swanson-quotes.herokuapp.com/v2/quotes"
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+      })
+    }
+  })
 }
 
-// display the quote/question
+
 displayQuote = function () {
-
+  console.log(myQuotes[0].quote);
+  containerEl.innerHTML = "<p>" + myQuotes[0].quote + "</p>"
 };
-
-// timer function
-setInterval(function () {
-    time --;
-    console.log(time);
-}(1000))
-
-
 
 getQuotes();
 ronSwanson();
+document.getElementById("btn").addEventListener("click", displayQuote);
